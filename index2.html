@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JS DOM paragraph style</title>
+  </head>
+  <body onload="getSize()" onresize="getSize()">
+    <p id="text" style="font-size: 20px">JavaScript Exercises - w3resource</p>
+    <div>
+      <button id="jsstyle" onclick="js_style(this)" style="font-size: 20px">
+        Style
+      </button>
+    </div>
+    <script>
+      function js_style(id) {
+        document.getElementById("jsstyle").style.color = "red";
+        document.getElementById("jsstyle").style.fontFamily = "Cambria";
+        document.getElementById("jsstyle").style.fontSize = "30px";
+        document.getElementById("text").style.backgroundColor = "red";
+      }
+    </script>
+    <hr />
+    <form id="form1" onsubmit="getFormvalue()">
+      First name: <input type="text" name="fname" value="David" /><br />
+      Last name: <input type="text" name="lname" value="Beckham" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <script>
+      let form = document.forms[0];
+
+      function getFormvalue() {
+        event.preventDefault();
+        new FormData(form);
+      }
+
+      form.addEventListener("formdata", (event) => {
+        let data = event.formData;
+
+        let entries = [...data.entries()];
+        console.log(entries);
+
+        let values = [...data.values()];
+        console.log(values);
+      });
+    </script>
+    <hr />
+    <p>
+      <a
+        id="w3r"
+        type="text/html"
+        hreflang="en-us"
+        rel="nofollow"
+        target="_self"
+        href="https://www.w3resource.com/"
+        >w3resource</a
+      >
+    </p>
+    <button onclick="getAttributes()">
+      Click here to get attributes value
+    </button>
+    <script>
+      function getAttributes() {
+        let a = document.getElementById("w3r");
+        a.href = "https://www.google.com.vn/";
+        a.hreflang = "vn";
+        a.rel = "follow";
+        a.innerHTML = "Google";
+        console.dir(a);
+      }
+    </script>
+    <hr />
+    <table id="sampleTable" border="1">
+      <tr>
+        <td>Row1 cell1</td>
+        <td>Row1 cell2</td>
+      </tr>
+      <tr>
+        <td>Row2 cell1</td>
+        <td>Row2 cell2</td>
+      </tr>
+    </table>
+    <br />
+    <input type="button" onclick="insert_Row()" value="Insert row" />
+    <script>
+      function insert_Row() {
+        let tableRef = document.getElementById(`sampleTable`);
+        let newRow = tableRef.insertRow(-1);
+        let newText_0 = document.createTextNode("Row1 cell3");
+        let newCell_0 = newRow.insertCell(0);
+        newCell_0.appendChild(newText_0);
+        let newText_1 = document.createTextNode("Row2 cell3");
+        let newCell_1 = newRow.insertCell(1);
+        newCell_1.appendChild(newText_1);
+        console.dir(tableRef);
+        console.log(tableRef.innerHTML);
+      }
+    </script>
+    <hr />
+    <form>
+      <select id="colorSelect">
+        <option>Red</option>
+        <option>Green</option>
+        <option>White</option>
+        <option>Black</option>
+      </select>
+      <input type="button" onclick="removecolor()" value="Select and Remove" />
+    </form>
+    <script>
+      function removecolor() {
+        let select = document.getElementById("colorSelect");
+        let index = select.selectedIndex;
+
+        console.dir(select.selectedIndex);
+        console.log(select.options[select.selectedIndex]);
+        select.remove(index);
+      }
+    </script>
+    <hr />
+    <form id="myForm">
+      <select id="colorSelect2">
+        <option>Red</option>
+        <option>Green</option>
+        <option>White</option>
+        <option>Black</option>
+      </select>
+      <input type="”text”" name="textField" id="’textField’" />
+      <input type="submit" value="Add" />
+    </form>
+    <script>
+      let myForm = document.querySelector("#myForm");
+      sel = document.getElementById("colorSelect2");
+      myForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // chặn load lại trang
+        let opt = document.createElement("option");
+        opt.text = myForm.textField.value;
+        sel.add(opt, null);
+        console.log(myForm.textField.value);
+      });
+    </script>
+    <hr />
+    <img
+      src="http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg"
+      alt=""
+      id="img"
+    />
+<input type="button" onclick="changeImg()" value="Change Image">
+    <script>
+      let img = document.getElementById("img");
+      console.dir(img);
+      let link = new Array();
+      link[0] = "http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg";
+      link[1] = "http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg";
+      link[2] =  "http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg";
+      function changeImg() {
+        let random = Math.round(2 * Math.random());
+        console.log(random);
+        document.getElementById("img").src = link[random];
+      };
+    </script>
+    <hr />
+    <div id="wh"></div>
+    <script>
+      function getSize() {
+        var w = document.documentElement.clientWidth;
+        var h = document.documentElement.clientHeight;
+
+        document.getElementById("wh").innerHTML =
+          "<h1>Width: " + w + " Height: " + h + "</h1>";
+      }
+    </script>
+  </body>
+</html>
